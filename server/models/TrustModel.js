@@ -25,6 +25,19 @@ class TrustModel{
       target_entity_id: entity.id,
     });
   }
+
+  async accept(trustRelationshipId){
+    const trustRelationship = await this.getTrustRelationshipById(trustRelationshipId);
+  }
+
+  async getTrustRelationshipById(id){
+    const result = await knex("entity_trust").where("id", id);
+    if(result.length === 0){
+      throw new HttpError(`The trust relationship id:${id} do not exist`, 404);
+    }else{
+      return result[0];
+    }
+  }
 }
 
 TrustModel.ENTITY_TRUST_TYPE = {

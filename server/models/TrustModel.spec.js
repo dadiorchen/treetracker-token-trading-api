@@ -67,8 +67,35 @@ describe("TrustModel", () => {
       await trustModel.request("send", "test");
     });
 
-  });
+    describe("trustModel.accept", () => {
+      it("accept a request with id which do not exist", async () => {
+        tracker.uninstall();
+        tracker.install();
+        tracker.on("query", (query) => {
+          expect(query.sql).match(/select.*entity_trust.*/);
+          query.response([]);
+        });
+        const trustRelationshipId = 0;
+        await jestExpect(async () => {
+          await trustModel.accept(trustRelationshipId);
+        }).rejects.toThrow();
+      });
 
+      it("accept successfully", async () => {
+        const trustRelationshipId = 0;
+        tracker.uninstall();
+        tracker.install();
+        tracker.on("query", (query) => {
+          expect(query.sql).match(/select.*entity_trust.*/);
+          query.response([{
+          }]);
+        });
+        await trustModel.accept(trustRelationshipId);
+      });
+
+    });
+
+  });
 
 });
 
