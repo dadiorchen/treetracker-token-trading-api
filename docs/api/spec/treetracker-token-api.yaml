@@ -506,6 +506,10 @@ paths:
       responses:
         '202':
           description: 'Accepted but waiting for approval'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/requestNewTrustRelationshipResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '403':
@@ -957,6 +961,14 @@ components:
           type: string
         created_at:
           type: string
+    requestNewTrustRelationshipResponse
+      title: requestNewTrustRelationshipResponse
+      type: object
+      properties:
+        id:
+          type: integer
+      example:
+        id: 123,
   responses:
     UnauthorizedError:
       description: Access bearer token is missing or invalid
