@@ -968,7 +968,7 @@ components:
         id:
           type: integer
       example:
-        id: 123,
+        id: 123
   responses:
     UnauthorizedError:
       description: Access bearer token is missing or invalid
