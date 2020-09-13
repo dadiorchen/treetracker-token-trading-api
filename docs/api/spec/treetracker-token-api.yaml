@@ -961,7 +961,7 @@ components:
           type: string
         created_at:
           type: string
-    requestNewTrustRelationshipResponse
+    requestNewTrustRelationshipResponse:
       title: requestNewTrustRelationshipResponse
       type: object
       properties:
